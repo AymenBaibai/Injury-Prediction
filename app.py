@@ -45,7 +45,7 @@ def get_user_input():
         "I want to lose weight", "I want to be fit", "I want to gain muscle",
         "I want to improve my health", "I enjoy exercising", "I'm not really interested in exercising"
     ])
-    injury_risk = st.selectbox('Injury risk', ['Never', 'Rarely (1-2 times)', 'Occasionally (3-5 times)', 'Often (6+ times)'])
+    injury_risk = st.selectbox('Injury risk per year', ['Never', 'Rarely (1-2 times)', 'Occasionally (3-5 times)', 'Often (6+ times)'])
     exercise_most_time = st.selectbox('How do you exercise most of the time?', [
         "Alone", "With friends", "With a trainer", "In a group"
     ])
