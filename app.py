@@ -31,9 +31,6 @@ def add_bg_from_local(image_file):
             background-image: url(data:image/jpg;base64,{encoded_string});
             background-size: cover;
             background-repeat: no-repeat;
-            background-position: center;
-            width: 100%;
-            height: 100%;
         }}
         </style>
         """,
