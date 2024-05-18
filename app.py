@@ -141,15 +141,6 @@ def main():
         prediction = model.predict(user_input_encoded)
         prediction_label = label_encoder.inverse_transform(prediction)[0]
 
-        injury_prevention_links = {
-            'Back pain or injury': 'https://www.example.com/prevent-back-pain',
-            'Fracture or bone injury': 'https://www.example.com/prevent-fractures',
-            'Joint injury (e.g., knee, shoulder)': 'https://www.example.com/prevent-joint-injuries',
-            'Muscle strain or sprain': 'https://www.example.com/prevent-muscle-strains',
-            'Other': 'https://www.example.com/general-injury-prevention',
-            'Tendonitis or repetitive strain injury': 'https://www.example.com/prevent-tendonitis'
-        }
-
         prevention_link = injury_prevention_links.get(prediction_label, "No link available")
         
         # Display the prediction and the model accuracy with a black background
