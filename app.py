@@ -149,7 +149,6 @@ def main():
         st.markdown(f"[Learn how to prevent {prediction_label}](<{prevention_link}>)")
 
     # Display the model accuracy
-    st.subheader("Model Accuracy")
     st.write(f"The model prediction accuracy is: {model_accuracy * 100:.2f}%")
     st.write(f"Made by: Aymen Baibai")
 
