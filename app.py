@@ -141,16 +141,28 @@ def main():
         prediction = model.predict(user_input_encoded)
         prediction_label = label_encoder.inverse_transform(prediction)[0]
 
-        st.subheader("Prediction")
-        st.write("The predicted injury type is:", prediction_label)
-        
-        # Display the prevention link
-        prevention_link = injury_prevention_links.get(prediction_label, "No link available")
-        st.markdown(f"[Learn how to prevent {prediction_label}](<{prevention_link}>)")
+        injury_prevention_links = {
+            'Back pain or injury': 'https://www.example.com/prevent-back-pain',
+            'Fracture or bone injury': 'https://www.example.com/prevent-fractures',
+            'Joint injury (e.g., knee, shoulder)': 'https://www.example.com/prevent-joint-injuries',
+            'Muscle strain or sprain': 'https://www.example.com/prevent-muscle-strains',
+            'Other': 'https://www.example.com/general-injury-prevention',
+            'Tendonitis or repetitive strain injury': 'https://www.example.com/prevent-tendonitis'
+        }
 
-    # Display the model accuracy
-    st.write(f"The model prediction accuracy is: {model_accuracy * 100:.2f}%")
-    st.write(f"Made by: Aymen Baibai")
+        prevention_link = injury_prevention_links.get(prediction_label, "No link available")
+        
+        # Display the prediction and the model accuracy with a black background
+        st.markdown(f"""
+            <div style="background-color: #0E1117; padding: 10px; border-radius: 15px;">
+                <p style="color: #FAFAFA;">The predicted injury type is: <b>{prediction_label}</b></p>
+                <p style="color: #FAFAFA;">For more information on preventing this type of injury, visit: 
+                <a href="{prevention_link}" target="_blank" style="color: #FF4B4B;">Learn how to prevent {prediction_label}</a></p>
+                <p style="color: #FAFAFA;">The model prediction accuracy is: <b>{model_accuracy * 100:.2f}%</b></p>
+            </div>
+            """, unsafe_allow_html=True)
+
+        st.markdown("Made by: **Aymen Baibai**")
 
 if __name__ == '__main__':
     main()
