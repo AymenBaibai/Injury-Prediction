@@ -151,6 +151,7 @@ def main():
     # Display the model accuracy
     st.subheader("Model Accuracy")
     st.write(f"The model prediction accuracy is: {model_accuracy * 100:.2f}%")
+    st.write(f"Made by: Aymen Baibai")
 
 if __name__ == '__main__':
     main()
