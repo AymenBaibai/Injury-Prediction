@@ -2,6 +2,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import base64
 
 # Load the pre-trained model, label encoder, feature names, and accuracy
 model = joblib.load('model.joblib')
@@ -18,6 +19,46 @@ injury_prevention_links = {
     'Fracture or bone injury': 'https://www.healthline.com/health/fracture#prevention'
     # Add more mappings as needed
 }
+
+# Define function to add background image
+def add_bg_from_local(image_file):
+    with open(image_file, "rb") as image:
+        encoded_string = base64.b64encode(image.read()).decode()
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url(data:image/jpg;base64,{encoded_string});
+            background-size: cover;
+            background-attachment: fixed;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+# Define function to set the black theme
+def set_black_theme():
+    st.markdown(
+        """
+        <style>
+        .stApp {
+            background: #000000;
+            color: #FFFFFF;
+        }
+        .css-18e3th9 {
+            background-color: #000000 !important;
+        }
+        .css-1d391kg {
+            background-color: #000000 !important;
+        }
+        .css-1aumxhk {
+            background-color: #000000 !important;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
 # Define function to get user input
 def get_user_input():
@@ -45,7 +86,7 @@ def get_user_input():
         "I want to lose weight", "I want to be fit", "I want to gain muscle",
         "I want to improve my health", "I enjoy exercising", "I'm not really interested in exercising"
     ])
-    injury_risk = st.selectbox('Injury risk per year', ['Never', 'Rarely (1-2 times)', 'Occasionally (3-5 times)', 'Often (6+ times)'])
+    injury_risk = st.selectbox('Injury risk', ['Never', 'Rarely (1-2 times)', 'Occasionally (3-5 times)', 'Often (6+ times)'])
     exercise_most_time = st.selectbox('How do you exercise most of the time?', [
         "Alone", "With friends", "With a trainer", "In a group"
     ])
@@ -68,7 +109,7 @@ def get_user_input():
         'Have you recommended your friends to follow a fitness routine?': recommended_friends,
         'Have you ever purchased fitness equipment?': purchased_equipment,
         'What motivates you the most to exercise?': motivation,
-        'Injury risk': injury_risk,
+        'Injury risk per year': injury_risk,
         'How do you exercise most of the time?': exercise_most_time,
         'What time of the day do you prefer to exercise?': exercise_time,
         'How much time do you spend exercising per day?': exercise_duration,
@@ -80,6 +121,12 @@ def get_user_input():
 # Main function to run the Streamlit app
 def main():
     st.title("Injury Type Prediction Dashboard")
+
+    # Set black theme
+    set_black_theme()
+
+    # Add background image
+    add_bg_from_local('Baki.jpg')
 
     # Get user input
     user_input = get_user_input()
