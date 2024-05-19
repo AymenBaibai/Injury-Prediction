@@ -37,29 +37,6 @@ def add_bg_from_local(image_file):
         unsafe_allow_html=True
     )
 
-# Define function to set the black theme
-def set_black_theme():
-    st.markdown(
-        """
-        <style>
-        .stApp {
-            background: #000000;
-            color: #FFFFFF;
-        }
-        .css-18e3th9 {
-            background-color: #000000 !important;
-        }
-        .css-1d391kg {
-            background-color: #000000 !important;
-        }
-        .css-1aumxhk {
-            background-color: #000000 !important;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
 # Define function to get user input
 def get_user_input():
     gender = st.selectbox('Gender', ['Male', 'Female'])
@@ -121,9 +98,6 @@ def get_user_input():
 # Main function to run the Streamlit app
 def main():
     st.title("Injury Type Prediction Dashboard")
-
-    # Set black theme
-    set_black_theme()
 
     # Add background image
     add_bg_from_local('Baki.jpg')
