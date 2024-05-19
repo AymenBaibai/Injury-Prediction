@@ -1,13 +1,8 @@
+# Import necessary libraries
 import streamlit as st
 import pandas as pd
 import joblib
 import base64
-
-# Set page configuration
-st.set_page_config(
-    page_title="Injury Type Prediction Dashboard",
-    theme="dark"
-)
 
 # Load the pre-trained model, label encoder, feature names, and accuracy
 model = joblib.load('model.joblib')
@@ -22,6 +17,7 @@ injury_prevention_links = {
     'Back pain or injury': 'https://www.healthline.com/health/back-pain',
     'Tendonitis or repetitive strain injury': 'https://www.healthline.com/health/tendinitis',
     'Fracture or bone injury': 'https://www.healthline.com/health/fracture#prevention'
+    # Add more mappings as needed
 }
 
 # Define function to add background image
@@ -36,6 +32,29 @@ def add_bg_from_local(image_file):
             background-size: cover;
             background-repeat: no-repeat;
         }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+# Define function to set the black theme
+def set_black_theme():
+    st.markdown(
+        """
+        <style>
+        .stApp {
+            background: #000000;
+            color: #FFFFFF;
+        }
+        .css-18e3th9 {
+            background-color: #000000 !important;
+        }
+        .css-1d391kg {
+            background-color: #000000 !important;
+        }
+        .css-1aumxhk {
+            background-color: #000000 !important;
+        }
         </style>
         """,
         unsafe_allow_html=True
@@ -103,6 +122,9 @@ def get_user_input():
 def main():
     st.title("Injury Type Prediction Dashboard")
 
+    # Set black theme
+    set_black_theme()
+
     # Add background image
     add_bg_from_local('Baki.jpg')
 
@@ -123,7 +145,7 @@ def main():
         
         # Display the prediction and the model accuracy with a black background
         st.markdown(f"""
-            <div style="background-color: rgba(38, 39, 48, 0.8); padding: 10px; border-radius: 15px;">
+            <div style="background-color: #0E1117; padding: 10px; border-radius: 15px;">
                 <p style="color: #FAFAFA;">The predicted injury type is: <b>{prediction_label}</b></p>
                 <p style="color: #FAFAFA;">For more information on preventing this type of injury, visit: 
                 <a href="{prevention_link}" target="_blank" style="color: #FF4B4B;">Learn how to prevent {prediction_label}</a></p>
@@ -131,7 +153,7 @@ def main():
             </div>
             """, unsafe_allow_html=True)
 
-    st.markdown("Made by: **Aymen Baibai**")
+        st.markdown("Made by: **Aymen Baibai**")
 
 if __name__ == '__main__':
     main()
