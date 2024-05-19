@@ -3,6 +3,15 @@ import pandas as pd
 import joblib
 import base64
 
+# Set page configuration
+st.set_page_config(
+    page_title="Injury Type Prediction Dashboard",
+    page_icon="🏋️",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    theme="dark"
+)
+
 # Load the pre-trained model, label encoder, feature names, and accuracy
 model = joblib.load('model.joblib')
 label_encoder = joblib.load('label_encoder.joblib')
